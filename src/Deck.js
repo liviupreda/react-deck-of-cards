@@ -27,8 +27,10 @@ class Deck extends Component {
       // Get card from Deck by ID
       let cardResponse = await axios.get(`${API_BASE_URL}/${deckID}/draw/`);
       let card = cardResponse.data.cards[0];
-      // If cardResponse.data.remaining is 0, throw an error
-      if (cardResponse.data.remaining === 0) {
+
+      // If cardResponse.data.remaining is >= 0, cardResponse.data.success is always = true
+      // Throw error if no cards left in deck, meaning cardResponse.data.success = false
+      if (!cardResponse.data.success) {
         throw new Error("No cards left!");
       }
 
