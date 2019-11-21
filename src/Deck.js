@@ -50,11 +50,14 @@ class Deck extends Component {
   }
 
   render() {
+    const cards = this.state.drawnCards.map(c => (
+      <Card key={c.id} name={c.name} image={c.image} />
+    ));
     return (
       <div className="Deck">
         <h1>Card Dealer</h1>
         <button onClick={this.getCard}>Get Card!</button>
-        <Card />
+        {cards}
       </div>
     );
   }
