@@ -14,8 +14,10 @@ class Deck extends Component {
     this.fetchAPIData();
   }
 
-  fetchAPIData() {
+  async fetchAPIData() {
     // Fetch random card data from Deck;
+    let deck = await axios.get(API_URL);
+    this.setState({ deck: deck.data });
   }
 
   render() {
